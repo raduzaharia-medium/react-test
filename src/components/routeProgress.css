@@ -1,0 +1,22 @@
+.route-progress {
+    padding: 4em 0;
+
+    .timeline {
+        height: 1px;
+        width: 100%;
+        background-color: #000;
+        position: relative;
+
+        .participant {
+            height: 1em;
+            width: fit-content;
+            border: 1px black solid;
+            border-radius: 0.4em;
+            padding: 0.2em;
+            font-size: 0.7em;
+            background-color: #f3e917;
+            position: absolute;
+            top: -0.7em;
+        }
+    }
+}
