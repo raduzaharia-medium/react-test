@@ -1,12 +1,7 @@
-import Route from "./components/route";
 import "./app.css";
 
 function App() {
-  return (
-    <div className="App">
-      <Route></Route>
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;
