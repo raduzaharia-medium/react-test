@@ -1,26 +1,28 @@
 import "./routePositions.css";
 
-export default function RoutePositions(props) {
+export const RoutePositions = (props) => {
+  const formatPosition = (position) => `${position * 100}%`;
+
   return (
     <div className="route-positions">
       <div className="bar">
         <div
           className="person"
-          style={{ left: props.data.myPosition * 100 + "%" }}
+          style={{ left: formatPosition(props.data.myPosition) }}
         >
           You
         </div>
 
-        {props.data.peopleOnRoute.map((e, index) => (
+        {props.data.peopleOnRoute.map((person, index) => (
           <div
             key={index}
             className="person"
-            style={{ left: e.position * 100 + "%" }}
+            style={{ left: formatPosition(person.position) }}
           >
-            {e.name}
+            {person.name}
           </div>
         ))}
       </div>
     </div>
   );
-}
+};

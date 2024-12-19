@@ -1,8 +1,8 @@
-import RoutePositions from "./routePositions";
+import { RoutePositions } from "./routePositions";
 
 import "./route.css";
 
-export default function Route(props) {
+export const Route = (props) => {
   const getStatus = () => {
     if (props.data.myPosition === 1) return "finished!";
     else return props.data.myPosition * 100 + "%";
@@ -17,4 +17,4 @@ export default function Route(props) {
       <RoutePositions data={props.data} />
     </section>
   );
-}
+};

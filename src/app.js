@@ -1,30 +1,32 @@
 import { useEffect, useState } from "react";
 import { getRoute } from "./services/routes";
-import Route from "./components/route";
+import { Route } from "./components/route";
 
 import "./app.css";
 
-function App() {
+export const App = () => {
   const [route, setRoute] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  useEffect((e) => {
-    const interval = setInterval(async () => {
-      const data = await getRoute();
-      setRoute({ ...data });
-    }, 2000);
+  const fetchRoute = () => {
+    const data = getRoute();
 
+    setRoute({ ...data });
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchRoute();
+
+    const interval = setInterval(fetchRoute, 2000);
     return () => clearInterval(interval);
   }, []);
 
-  return (
-    <>
-      {route && (
-        <div className="App">
-          <Route data={route} />
-        </div>
-      )}
-    </>
-  );
-}
+  if (loading) return <div>Loading...</div>;
 
-export default App;
+  return (
+    <div className="App">
+      <Route data={route} />
+    </div>
+  );
+};
