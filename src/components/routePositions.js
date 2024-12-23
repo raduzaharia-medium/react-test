@@ -1,7 +1,7 @@
 import "./routePositions.css";
 
 export const RoutePositions = (props) => {
-  const formatPosition = (position) => `${position * 100}%`;
+  const formatPosition = (position) => `${position * 81}%`;
 
   return (
     <div className="route-positions">
