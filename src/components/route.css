@@ -1,14 +1,8 @@
 section.route {
-    padding: 1em;
-    margin: 1em 0;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    border: 1px solid #ddd;
-    width: 50%;
-    box-sizing: border-box;
-
-    @media screen and (max-width: 600px) {
-        width: 100%;
-    }
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
 }

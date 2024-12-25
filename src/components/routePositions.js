@@ -16,7 +16,7 @@ export const RoutePositions = (props) => {
   const formatPosition = (position) => `${position * 81}%`;
 
   useEffect(() => {
-    if (data && data.myPosition >= 1) setShouldRefetch(false);
+    if (data && data.myPosition >= 1 && data.peopleOnRoute.every((e) => e.position >= 1)) setShouldRefetch(false);
   }, [data]);
 
   if (isLoading || isFetching) return <div>Loading...</div>;
