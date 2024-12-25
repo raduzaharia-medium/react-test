@@ -8,6 +8,8 @@ export const RouteHeader = (props) => {
   });
 
   const getStatus = () => {
+    return null;
+
     if (data.myPosition === 1) return "finished!";
     else return Math.round(data.myPosition * 100) + "%";
   };

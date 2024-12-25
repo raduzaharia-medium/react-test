@@ -93,9 +93,15 @@ export const getRouteName = (id) => {
 export const getPositions = (id) => {
   const result = routes.filter((route) => route.id === id)[0];
 
+  result.peopleOnRoute = result.peopleOnRoute.map((person) => ({
+    ...person,
+    position: updatePosition(person.position),
+  }));
+  result.myPosition = updatePosition(result.myPosition);
+
   return {
     myPosition: result.myPosition,
-    peopleOnRoute: result.peopleOnRoute.map((person) => person.position),
+    peopleOnRoute: result.peopleOnRoute,
   };
 };
 

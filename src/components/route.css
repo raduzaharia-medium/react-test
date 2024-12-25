@@ -6,4 +6,9 @@ section.route {
     background-color: #fff;
     border: 1px solid #ddd;
     width: 50%;
+    box-sizing: border-box;
+
+    @media screen and (max-width: 600px) {
+        width: 100%;
+    }
 }
