@@ -1,13 +1,9 @@
-import { useContext } from "react";
-import { AppContext } from "../contexts/appContext";
-
 import { getPrettyStatus } from "../services/tools";
 import { useRouteName } from "../queries/routeName";
+import { useMyPosition } from "../hooks/myPosition";
 
 export const RouteHeader = (props) => {
-  const { globalState } = useContext(AppContext);
-  const myPosition = globalState.myPositions?.filter((e) => e.routeId === props.routeId)[0]?.position;
-
+  const myPosition = useMyPosition(props.routeId);
   const { isLoading, error, data } = useRouteName(props.routeId);
 
   if (isLoading) return <div>Loading...</div>;
