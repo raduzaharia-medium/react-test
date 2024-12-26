@@ -1,11 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import { getRoutes } from "../services/routes";
 import { Route } from "./route";
+import { useRoutes } from "../queries/routes";
 
 import "./routes.css";
 
 export const Routes = () => {
-  const { isLoading, error, data } = useQuery({ queryKey: ["routes"], queryFn: getRoutes });
+  const { isLoading, error, data } = useRoutes();
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
