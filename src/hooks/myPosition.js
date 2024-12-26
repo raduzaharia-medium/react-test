@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { AppContext } from "../contexts/appContext";
+import { usePositions } from "../contexts/positionsContext";
 
 export const useMyPosition = (routeId) => {
-  const { globalState } = useContext(AppContext);
-  const myPosition = globalState.myPositions?.filter((e) => e.routeId === routeId)[0]?.position;
+  const [positions] = usePositions();
+  const myPosition = positions?.find((e) => e.routeId === routeId)?.position;
 
   return myPosition;
 };

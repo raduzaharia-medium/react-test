@@ -1,12 +1,12 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import { getPositions } from "../services/routes";
-import { AppContext } from "../contexts/appContext";
+import { usePositions } from "../contexts/positionsContext";
 
 export const useRoutePositions = (routeId) => {
   const [shouldRefetch, setShouldRefetch] = useState(true);
-  const { globalState, setGlobalState } = useContext(AppContext);
+  const [positions, setPositions] = usePositions();
 
   const { isLoading, error, data, isFetching } = useQuery({
     queryKey: ["routePositions", routeId],
@@ -17,16 +17,16 @@ export const useRoutePositions = (routeId) => {
 
   useEffect(() => {
     if (data) {
-      const myPositions = globalState.myPositions || [];
-      const selection = myPositions.filter((e) => e.routeId === routeId);
+      const updatedPositions = positions.map((pos) => (pos.routeId === routeId ? { ...pos, position: data.myPosition } : pos));
 
-      if (selection.length === 0) myPositions.push({ routeId, position: data.myPosition });
-      else selection[0].position = data.myPosition;
+      if (!updatedPositions.some((pos) => pos.routeId === routeId)) {
+        updatedPositions.push({ routeId, position: data.myPosition });
+      }
 
-      setGlobalState((state) => ({ ...state, myPositions }));
+      setPositions(updatedPositions);
       if (data.myPosition >= 1 && data.peopleOnRoute.every((e) => e.position >= 1)) setShouldRefetch(false);
     }
-  }, [data, routeId, globalState.myPositions, setGlobalState]);
+  }, [data, routeId]);
 
   return { isLoading, error, data, isFetching };
 };
