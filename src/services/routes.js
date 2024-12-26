@@ -18,12 +18,6 @@
  * @property {number[]} peopleOnRoute - The list of people on the route.
  */
 
-/**
- * @typedef {Object} RouteInfo
- * @property {string} routeName - The name of the route.
- * @property {number} myPosition - The current position of the user.
- */
-
 /** @type {Route[]} */
 const routes = [
   {
@@ -84,11 +78,11 @@ export const getRoutes = () => routes.map((route) => ({ id: route.id }));
 /**
  * Gets the name of the route.
  * @param {number} id - The route identifier.
- * @returns {RouteInfo} - The name of the route and my position.
+ * @returns {string} - The name of the route.
  */
 export const getRouteName = (id) => {
   const result = routes.filter((route) => route.id === id)[0];
-  return { routeName: result.routeName, myPosition: result.myPosition };
+  return result.routeName;
 };
 
 /**
